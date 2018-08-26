@@ -2,10 +2,10 @@
 Recursive Viewer which can open files within multiple levels of folders.
 
 
-#Implemented Features
+Implemented Features:
 
 
-#Potential Features
+Potential Features:
 Display png, jpg, etc...
 GUI (opengl?)
 Menus
@@ -16,7 +16,7 @@ Show all files
 Slideshow every x seconds (milliseconds)
 Functions to recursively access all extension types
 
-#Optional Features
+Optional Features:
 Zoom
 Fullscreen, windowed (borderless?)
 Move image
