@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
+    <ClCompile Include="ConsoleUtility.cpp" />
+    <ClCompile Include="FileLoader.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DefaultExtensionTypes.h" />
+    <ClInclude Include="FileLoader.h" />
+    <ClInclude Include="GeneralConstants.h" />
+    <ClInclude Include="ConsoleUtility.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
