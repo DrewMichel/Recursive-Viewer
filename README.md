@@ -15,6 +15,7 @@ Preload x next/previous files<br/>
 Show all files<br/>
 Slideshow every x seconds (milliseconds)<br/>
 Functions to recursively access all extension types<br/>
+Sort files based on name or index<br/>
 <br/>
 Optional Features:<br/>
 Zoom<br/>

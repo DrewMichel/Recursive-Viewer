@@ -11,6 +11,7 @@ public:
 	static std::vector<std::experimental::filesystem::path> loadTopDown(const std::experimental::filesystem::path& currentPath);
 	static std::vector<std::experimental::filesystem::path> loadBottomUp(const std::experimental::filesystem::path& currentPath);
 	static std::vector<std::experimental::filesystem::path> getDirectoryFiles(const std::experimental::filesystem::path& currentPath);
+	static void splitDirectoriesFromFiles(const std::vector<std::experimental::filesystem::path>& allFiles, std::vector<std::experimental::filesystem::path>& directories, std::vector<std::experimental::filesystem::path>& regularFiles);
 
 private:
 

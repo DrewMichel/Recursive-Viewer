@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	//cout << argc << endl;
 	//cout << argv[0] << endl;
 
-	int position = 0;
+	int position = 1;
 
 	if (argc >= position + 1)
 	{
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
 		//cout << primaryPath.parent_path() << endl;
 
-		primaryPath = primaryPath.parent_path(); // MODIFY THIS
+		//primaryPath = primaryPath.parent_path(); // MODIFY THIS
 
 		if (experimental::filesystem::exists(primaryPath)) // Determines if the file exists
 		{
@@ -35,14 +35,16 @@ int main(int argc, char *argv[])
 				cout << primaryPath << " is a directory" << endl;
 
 				//vector<experimental::filesystem::path> directoryFiles = FileLoader::getDirectoryFiles(primaryPath.parent_path());
-				vector<experimental::filesystem::path> directoryFiles = FileLoader::getDirectoryFiles(primaryPath);
 
-				cout << directoryFiles.size() << endl;
+				//vector<experimental::filesystem::path> directoryFiles = FileLoader::loadBottomUp(primaryPath);
+				vector<experimental::filesystem::path> directoryFiles = FileLoader::loadTopDown(primaryPath);
 
 				for (int i = 0; i < directoryFiles.size(); ++i)
 				{
 					cout << directoryFiles[i] << endl;
 				}
+
+				cout << "NUMBER OF FILES: " << directoryFiles.size() << endl;
 			}
 			else if(experimental::filesystem::is_regular_file(primaryPath)) // Regular file
 			{
@@ -56,6 +58,7 @@ int main(int argc, char *argv[])
 
 	//std::cout << std::experimental::filesystem::is_directory(std::experimental::filesystem::path(argv[0])) << std::endl;
 
+	cout << "Press enter to continue..." << endl;
 	ConsoleUtility::pause();
 
 	return 0;

@@ -37,6 +37,21 @@ std::vector<std::experimental::filesystem::path> FileLoader::getDirectoryFiles(c
 	return fileVector;
 }
 
+void FileLoader::splitDirectoriesFromFiles(const std::vector<std::experimental::filesystem::path>& allFiles, std::vector<std::experimental::filesystem::path>& directories, std::vector<std::experimental::filesystem::path>& regularFiles)
+{
+	for (int i = 0; i < allFiles.size(); ++i)
+	{
+		if (std::experimental::filesystem::is_directory(allFiles[i]))
+		{
+			directories.push_back(allFiles[i]);
+		}
+		else if (std::experimental::filesystem::is_regular_file(allFiles[i])) // && ISVALIDEXTENSION( currentPath.extension())
+		{
+			regularFiles.push_back(allFiles[i]);
+		}
+	}
+}
+
 // Private functions
 
 void FileLoader::loadTopDownHelper(std::vector<std::experimental::filesystem::path>& fileVector, const std::experimental::filesystem::path& currentPath)
@@ -45,15 +60,26 @@ void FileLoader::loadTopDownHelper(std::vector<std::experimental::filesystem::pa
 	{
 		if (std::experimental::filesystem::is_directory(currentPath))
 		{
+			std::vector<std::experimental::filesystem::path> directories;
+			std::vector<std::experimental::filesystem::path> regularFiles;
 
+			splitDirectoriesFromFiles(getDirectoryFiles(currentPath), directories, regularFiles);
+
+			// Files then directories
+			for (int i = 0; i < regularFiles.size(); ++i)
+			{
+				fileVector.push_back(regularFiles[i]);
+			}
+			for (int i = 0; i < directories.size(); ++i)
+			{
+				loadBottomUpHelper(fileVector, directories[i]);
+			}
 		}
 		else if (std::experimental::filesystem::is_regular_file(currentPath)) // && ISVALIDEXTENSION( currentPath.extension())
 		{
 			fileVector.push_back(currentPath);
 		}
 	}
-
-	
 }
 
 void FileLoader::loadBottomUpHelper(std::vector<std::experimental::filesystem::path>& fileVector, const std::experimental::filesystem::path& currentPath)
@@ -62,7 +88,20 @@ void FileLoader::loadBottomUpHelper(std::vector<std::experimental::filesystem::p
 	{
 		if (std::experimental::filesystem::is_directory(currentPath))
 		{
+			std::vector<std::experimental::filesystem::path> directories;
+			std::vector<std::experimental::filesystem::path> regularFiles;
 
+			splitDirectoriesFromFiles(getDirectoryFiles(currentPath), directories, regularFiles);
+
+			// Directories then files
+			for (int i = 0; i < directories.size(); ++i)
+			{
+				loadBottomUpHelper(fileVector, directories[i]);
+			}
+			for (int i = 0; i < regularFiles.size(); ++i)
+			{
+				fileVector.push_back(regularFiles[i]);
+			}
 		}
 		else if (std::experimental::filesystem::is_regular_file(currentPath)) // && ISVALIDEXTENSION( currentPath.extension())
 		{
