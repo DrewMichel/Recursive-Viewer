@@ -8,6 +8,11 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QMenu>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QScrollbar>
+#include <QtGui/QKeySequence>
+#include "DMainWindow.h"
 
 #include "ConsoleUtility.h"
 
@@ -17,32 +22,46 @@ using namespace std; // refactor later
 int main(int argc, char *argv[])
 {
 	QApplication qApplicationInstance(argc, argv);
-	QMainWindow qMainWindowInstance;
+	//QMainWindow qMainWindowInstance;
 	//QLabel hello("<center>Welcome to my first label</center>");
 	//hello.setWindowTitle("First title");
 	//hello.resize(400, 400);
 	//hello.show();
 
+	DMainWindow dWindow;
+
 	QMenuBar *qMenuBarInstance = new QMenuBar();
 
-	qMainWindowInstance.resize(400, 400);
-	qMainWindowInstance.setWindowTitle("Window Title");
+	dWindow.resize(400, 400);
+	dWindow.setWindowTitle("Window Title");
 
-	QMenu qFileMenuInstance("Menu");
-	qFileMenuInstance.addAction("Sub Action");
-	qFileMenuInstance.addAction("Sub Menu");
+	QMenu qFileMenuInstance("File");
+	QAction qFileActionInstance("Open File");
+
+
+	//qFileActionInstance.setShortcut(QKeySequence::Open);
+	//qFileActionInstance.setStatusTip(QObject::tr("Open an existing file or folder"));
+	//QObject::connect(qFileActionInstance, &QAction::triggered, new QLabel("Label"), &saveFileName);
+
+	//QObject::connect(&qFileActionInstance, SIGNAL(triggered), &qMainWindowInstance, SLOT(close));
+
+	QObject::connect(&qFileActionInstance, &QAction::triggered, &dWindow, &DMainWindow::openFileDialog);
+
+	//qFileMenuInstance.addAction("Sub Action");
+	//qFileMenuInstance.addAction("Sub Menu");
+	qFileMenuInstance.addAction(&qFileActionInstance);
 	qMenuBarInstance->addMenu(&qFileMenuInstance);
-	qMenuBarInstance->addSeparator();
-	qMenuBarInstance->addAction("Action");
-	qMainWindowInstance.setMenuBar(qMenuBarInstance);
+	//qMenuBarInstance->addSeparator();
+	//qMenuBarInstance->addAction("Action");
+	dWindow.setMenuBar(qMenuBarInstance);
 
 	//qMainWindowInstance.addToolBar("Tool Bar");
 
 	//qMenuBarInstance->show();
-	qMainWindowInstance.show();
+	dWindow.show();
 	//qMainWindowInstance.showFullScreen();
 	//qMenuBarInstance->hide();
-
+	//qFileActionInstance.trigger();
 
 	return qApplicationInstance.exec();
 
