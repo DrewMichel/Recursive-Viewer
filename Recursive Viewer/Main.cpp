@@ -6,6 +6,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QMenu>
 
 #include "ConsoleUtility.h"
 
@@ -21,10 +23,25 @@ int main(int argc, char *argv[])
 	//hello.resize(400, 400);
 	//hello.show();
 
+	QMenuBar *qMenuBarInstance = new QMenuBar();
+
 	qMainWindowInstance.resize(400, 400);
 	qMainWindowInstance.setWindowTitle("Window Title");
 
-	qMainWindowInstance.show();
+	QMenu qFileMenuInstance("Menu");
+	qFileMenuInstance.addAction("Sub Action");
+	qFileMenuInstance.addAction("Sub Menu");
+	qMenuBarInstance->addMenu(&qFileMenuInstance);
+	qMenuBarInstance->addSeparator();
+	qMenuBarInstance->addAction("Action");
+	qMainWindowInstance.setMenuBar(qMenuBarInstance);
+
+	//qMainWindowInstance.addToolBar("Tool Bar");
+
+	//qMenuBarInstance->show();
+	//qMainWindowInstance.show();
+	//qMainWindowInstance.showFullScreen();
+	//qMenuBarInstance->hide();
 
 
 	return qApplicationInstance.exec();
