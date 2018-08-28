@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	//qMainWindowInstance.addToolBar("Tool Bar");
 
 	//qMenuBarInstance->show();
-	//qMainWindowInstance.show();
+	qMainWindowInstance.show();
 	//qMainWindowInstance.showFullScreen();
 	//qMenuBarInstance->hide();
 
