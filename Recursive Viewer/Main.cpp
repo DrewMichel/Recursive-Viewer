@@ -3,6 +3,9 @@
 #include <iostream>
 #include <limits>
 #include "FileLoader.h"
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 
 #include "ConsoleUtility.h"
 
@@ -11,10 +14,29 @@ using namespace std; // refactor later
 
 int main(int argc, char *argv[])
 {
+	QApplication qApplicationInstance(argc, argv);
+	QMainWindow qMainWindowInstance;
+	//QLabel hello("<center>Welcome to my first label</center>");
+	//hello.setWindowTitle("First title");
+	//hello.resize(400, 400);
+	//hello.show();
+
+	qMainWindowInstance.resize(400, 400);
+	qMainWindowInstance.setWindowTitle("Window Title");
+
+	qMainWindowInstance.show();
+
+
+	return qApplicationInstance.exec();
+
 	//cout << argc << endl;
 	//cout << argv[0] << endl;
 
 	int position = 1;
+
+	// TODO: OPEN GUI
+
+	// TODO: scan argv for flags and file
 
 	if (argc >= position + 1)
 	{
