@@ -9,6 +9,7 @@
 #include <vector>
 #include <filesystem>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QScrollArea>
 
 class DMainWindow : public QMainWindow
 {
@@ -17,6 +18,7 @@ class DMainWindow : public QMainWindow
 		QString recentFilePath;
 		std::vector<std::experimental::filesystem::path> filePaths;
 		QLabel imageLabel;
+		QScrollArea imageScrollArea;
 
 	//Q_OBJECT
 	public:
@@ -29,6 +31,8 @@ class DMainWindow : public QMainWindow
 
 		bool displayImage(int index);
 		bool setup();
+
+		void resizeEvent(QResizeEvent *qEvent);
 
 	signals:
 	public slots:

@@ -8,9 +8,9 @@ Functions to recursively access all extension types<br/>
 Fullscreen, windowed<br/>
 Menus<br/>
 Fonts<br/>
+Display png, jpg, etc...<br/>
 <br/>
 Potential Features:<br/>
-Display png, jpg, etc...<br/>
 Next file, previous file, random file<br/>
 Preload x next/previous files<br/>
 Show all files<br/>
@@ -29,3 +29,4 @@ Customize/hide options<br/>
 Display recently opened files/folders<br/>
 Fit to width, height, original, stretch, etc...<br/>
 Customizable extensions list<br/>
+Print all selected images / current image(?)<br/>

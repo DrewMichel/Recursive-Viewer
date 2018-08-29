@@ -65,8 +65,14 @@ bool DMainWindow::displayImage(int index)
 {
 	if (index >= 0 && index < filePaths.size())
 	{
-		imageLabel.setPixmap(QPixmap(filePaths[index].string().data()));
-		imageLabel.setAlignment(Qt::AlignCenter);
+		QPixmap pixmapImage(QPixmap(filePaths[index].string().data()));
+
+		
+
+
+		imageLabel.setPixmap(pixmapImage);
+		imageLabel.resize(imageLabel.pixmap()->size());
+		//imageLabel.setAlignment(Qt::AlignCenter);
 		imageLabel.setIndent(0);
 		imageLabel.setMargin(0);
 		return true;
@@ -77,7 +83,28 @@ bool DMainWindow::displayImage(int index)
 
 bool DMainWindow::setup()
 {
-	imageLabel.setParent(this);
 	
+	imageScrollArea.setParent(this);
+	imageLabel.setParent(&imageScrollArea);
+
+	imageLabel.setBackgroundRole(QPalette::Base);
+	imageLabel.setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+	imageLabel.setScaledContents(true);
+
+	
+	//imageLabel.setParent(this);
+	
+	imageScrollArea.setBackgroundRole(QPalette::Dark);
+	imageScrollArea.setWidget(&imageLabel);
+
+
+	imageScrollArea.setVisible(true);
+	setCentralWidget(&imageScrollArea);
+
 	return true;
+}
+
+void DMainWindow::resizeEvent(QResizeEvent *qEvent)
+{
+	QMainWindow::resizeEvent(qEvent);
 }
