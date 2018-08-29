@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 
 	QMenu qFileMenuInstance("File");
 	QAction qFileActionInstance("Open File");
+	QAction qDirectoryActionInstance("Open Folder");
 
 
 	//qFileActionInstance.setShortcut(QKeySequence::Open);
@@ -46,9 +47,11 @@ int main(int argc, char *argv[])
 	//QObject::connect(&qFileActionInstance, SIGNAL(triggered), &qMainWindowInstance, SLOT(close));
 
 	QObject::connect(&qFileActionInstance, &QAction::triggered, &dWindow, &DMainWindow::openFileDialog);
+	QObject::connect(&qDirectoryActionInstance, &QAction::triggered, &dWindow, &DMainWindow::openDirectoryDialog);
 
 	//qFileMenuInstance.addAction("Sub Action");
 	//qFileMenuInstance.addAction("Sub Menu");
+	qFileMenuInstance.addAction(&qDirectoryActionInstance);
 	qFileMenuInstance.addAction(&qFileActionInstance);
 	qMenuBarInstance->addMenu(&qFileMenuInstance);
 	//qMenuBarInstance->addSeparator();

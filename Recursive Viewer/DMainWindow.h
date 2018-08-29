@@ -5,12 +5,16 @@
 #include <QtWidgets/QWidget>
 #include <QtCore/QMetaObject>
 #include <QtWidgets/QFileDialog>
+#include "FileLoader.h"
+#include <vector>
+#include <filesystem>
 
 class DMainWindow : public QMainWindow
 {
 	private:
 		// Member variables
 		QString recentFilePath;
+		std::vector<std::experimental::filesystem::path> filePaths;
 
 	//Q_OBJECT
 	public:
@@ -22,6 +26,7 @@ class DMainWindow : public QMainWindow
 	signals:
 	public slots:
 		void openFileDialog();
+		void openDirectoryDialog();
 };
 
 #endif

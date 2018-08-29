@@ -9,7 +9,6 @@ Fullscreen, windowed<br/>
 Menus<br/>
 Fonts<br/>
 <br/>
-
 Potential Features:<br/>
 Display png, jpg, etc...<br/>
 Next file, previous file, random file<br/>
