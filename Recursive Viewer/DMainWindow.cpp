@@ -5,12 +5,12 @@
 // Constructors
 DMainWindow::DMainWindow() : QMainWindow()
 {
-
+	setup();
 }
 
 DMainWindow::DMainWindow(QWidget *parent = nullptr, Qt::WindowFlags *flags = nullptr) : QMainWindow(parent, *flags)
 {
-
+	setup();
 }
 
 // signals
@@ -31,7 +31,9 @@ void DMainWindow::openFileDialog()
 	{
 		filePaths = FileLoader::loadBottomUp(recentFilePath.toStdString());
 
-		setWindowTitle(QString(std::to_string(filePaths.size()).data()));
+		//setWindowTitle(QString(std::to_string(filePaths.size()).data()));
+
+		displayImage(0);
 	}
 	else
 	{
@@ -49,10 +51,33 @@ void DMainWindow::openDirectoryDialog()
 	{
 		filePaths = FileLoader::loadBottomUp(recentFilePath.toStdString());
 
-		setWindowTitle(QString(std::to_string(filePaths.size()).data()));
+		//setWindowTitle(QString(std::to_string(filePaths.size()).data()));
+
+		displayImage(0);
 	}
 	else
 	{
 		// warning
 	}
+}
+
+bool DMainWindow::displayImage(int index)
+{
+	if (index >= 0 && index < filePaths.size())
+	{
+		imageLabel.setPixmap(QPixmap(filePaths[index].string().data()));
+		imageLabel.setAlignment(Qt::AlignCenter);
+		imageLabel.setIndent(0);
+		imageLabel.setMargin(0);
+		return true;
+	}
+
+	return false;
+}
+
+bool DMainWindow::setup()
+{
+	imageLabel.setParent(this);
+	
+	return true;
 }

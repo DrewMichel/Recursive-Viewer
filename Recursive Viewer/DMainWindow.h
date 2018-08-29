@@ -8,6 +8,7 @@
 #include "FileLoader.h"
 #include <vector>
 #include <filesystem>
+#include <QtWidgets/QLabel>
 
 class DMainWindow : public QMainWindow
 {
@@ -15,6 +16,7 @@ class DMainWindow : public QMainWindow
 		// Member variables
 		QString recentFilePath;
 		std::vector<std::experimental::filesystem::path> filePaths;
+		QLabel imageLabel;
 
 	//Q_OBJECT
 	public:
@@ -22,6 +24,11 @@ class DMainWindow : public QMainWindow
 		// Constructors
 		DMainWindow();
 		DMainWindow(QWidget *parent, Qt::WindowFlags *flags);
+
+		// Functions
+
+		bool displayImage(int index);
+		bool setup();
 
 	signals:
 	public slots:
