@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
 
 	//qMenuBarInstance->show();
 	dWindow.show();
+
 	//qMainWindowInstance.showFullScreen();
 	//qMenuBarInstance->hide();
 	//qFileActionInstance.trigger();
@@ -70,7 +71,7 @@ int main(int argc, char *argv[])
 
 	//cout << argc << endl;
 	//cout << argv[0] << endl;
-
+#if 0
 	int position = 1;
 
 	// TODO: OPEN GUI
@@ -123,4 +124,5 @@ int main(int argc, char *argv[])
 	ConsoleUtility::pause();
 
 	return 0;
+#endif
 }

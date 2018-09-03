@@ -5,5 +5,6 @@
 #include <string>
 
 const std::string PERIOD = ".";
+const int SCROLLING_PREVENTION_OFFSET = 2;
 
 #endif

@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QScrollArea>
+#include <QtGui/QCloseEvent>
 
 class DMainWindow : public QMainWindow
 {
@@ -33,6 +34,7 @@ class DMainWindow : public QMainWindow
 		bool setup();
 
 		void resizeEvent(QResizeEvent *qEvent);
+		void closeEvent(QCloseEvent *qEvent);
 
 	signals:
 	public slots:

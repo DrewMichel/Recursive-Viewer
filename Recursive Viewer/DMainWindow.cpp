@@ -1,6 +1,7 @@
 #include "DMainWindow.h"
 #include <string>
 #include <QFlags>
+#include "GeneralConstants.h"
 
 // Constructors
 DMainWindow::DMainWindow() : QMainWindow()
@@ -67,14 +68,14 @@ bool DMainWindow::displayImage(int index)
 	{
 		QPixmap pixmapImage(QPixmap(filePaths[index].string().data()));
 
-		
-
-
 		imageLabel.setPixmap(pixmapImage);
 		imageLabel.resize(imageLabel.pixmap()->size());
 		//imageLabel.setAlignment(Qt::AlignCenter);
 		imageLabel.setIndent(0);
 		imageLabel.setMargin(0);
+		imageScrollArea.resize(this->size().width(), this->size().height());
+		imageLabel.resize(this->size().width() - SCROLLING_PREVENTION_OFFSET, this->size().height() - SCROLLING_PREVENTION_OFFSET);
+		imageScrollArea.setVisible(true);
 		return true;
 	}
 
@@ -97,9 +98,12 @@ bool DMainWindow::setup()
 	imageScrollArea.setBackgroundRole(QPalette::Dark);
 	imageScrollArea.setWidget(&imageLabel);
 
+	imageScrollArea.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	imageScrollArea.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	imageScrollArea.setVisible(true);
-	setCentralWidget(&imageScrollArea);
+	//imageScrollArea.setVisible(true);
+	//setCentralWidget(&imageScrollArea);
+	imageScrollArea.setVisible(false);
 
 	return true;
 }
@@ -107,4 +111,13 @@ bool DMainWindow::setup()
 void DMainWindow::resizeEvent(QResizeEvent *qEvent)
 {
 	QMainWindow::resizeEvent(qEvent);
+	imageScrollArea.resize(this->size().width(), this->size().height());
+	imageLabel.resize(this->size().width() - SCROLLING_PREVENTION_OFFSET, this->size().height() - SCROLLING_PREVENTION_OFFSET); // prevents minor scrolling
+}
+
+void DMainWindow::closeEvent(QCloseEvent *qEvent)
+{
+	qEvent->ignore();
+
+	exit(1);
 }
